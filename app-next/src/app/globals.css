@@ -87,10 +87,10 @@ nav a:hover div {
 }
 
 .radial {
-  background: radial-gradient(
+  /* background: radial-gradient(
     var(--radial-color-inner),
     var(--radial-color-outer)
-  );
+  ); */
 }
 
 @keyframes grid-bg-dark {
