@@ -16,7 +16,7 @@ export const hero_section = {
     "creating impactful digital experiences",
   ],
   CTA: { label: "View My Work", href: "#projects", target: "_self" },
-  subCTA: { label: "Download Resume", href: "/resumes/Resume_BackEnd.pdf", target: "_blank" },
+  subCTA: { label: "Download Resume", href: "/resumes/Resume_Abhay-Bisht.pdf", target: "_blank" },
 };
 
 export const skills: SkillData[] = [
