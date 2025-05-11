@@ -145,13 +145,18 @@ function HeroSection({ className }: { className?: string }) {
       {/* CTA */}
       <div className="flex flex-col gap-y-5">
         <a
-          href="#projects"
+          href={hero_section.CTA.href}
           className="active:scale-95 text-xl px-8 transition-all font-extrabold py-3 rounded-full border-2 dark:border-gray-200 border-gray-500 hover:bg-gray-800 hover:text-gray-100 dark:hover:bg-white dark:hover:text-gray-800"
+          target={hero_section.CTA.target}
         >
-          {hero_section.CTA}
+          {hero_section.CTA.label}
         </a>
-        <a className="text-xl cursor-pointer [&>.bottom-line]:hover:scale-100 px-2">
-          <div className="px-2 mb-2">{hero_section.subCTA}</div>
+        <a
+          className="text-xl cursor-pointer [&>.bottom-line]:hover:scale-100 px-2"
+          href={hero_section.subCTA.href}
+          target={hero_section.subCTA.target}
+        >
+          <div className="px-2 mb-2">{hero_section.subCTA.label}</div>
           <div className="bottom-line transition-transform duration-500 h-[2px] w-full scale-0 dark:bg-gray-200 bg-gray-800 rounded"></div>
         </a>
       </div>
