@@ -5,6 +5,7 @@ import useDarkMode from "@/hooks/useDarkMode";
 import { ProjectData, SkillData } from "@/types/home";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import BoidsContainer from "./boids/page";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           style={{ backdropFilter: "blur(2px)" }}
           className="radial absolute h-full w-full top-0 left-0 z-10"
         ></div> */}
+        <BoidsContainer/>
         <div
           className="absolute min-h-screen w-full flex flex-col"
           style={{ zIndex: 999 }}

@@ -25,6 +25,11 @@ export default class BoidSystem {
     this.boids = Array.from({ length: boidsCount }).map(() => this.createBoid());
 
     window.addEventListener("resize", () => this.resizeCanvas());
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", (e) => {
+      console.log(e.matches);
+      this.theme.bgColor = e.matches ? "#0a0a0a" : "#ffffff";
+    });
   }
 
   resizeCanvas(width?: number, height?: number) {
