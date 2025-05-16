@@ -11,9 +11,10 @@ export default function Home() {
     <main>
       {/* Header and Hero Section */}
       <section className="min-h-screen w-full flex flex-col relative p3d">
+        
         {/* <div className="z-0 absolute grid-bg top-0 left-0"></div> */}
-        {/* <Grid />
-        <div
+        { false && <Grid /> }
+        {/* <div
           style={{ backdropFilter: "blur(2px)" }}
           className="radial absolute h-full w-full top-0 left-0 z-10"
         ></div> */}
