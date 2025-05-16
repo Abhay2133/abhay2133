@@ -17,6 +17,7 @@ export default class BoidSystem {
 
   constructor(canvas: HTMLCanvasElement, theme = "light", boidsCount = 100) {
     this.renderer = new Renderer(canvas);
+    this.resizeCanvas();
     this.pointer = { x: 0, y: 0 };
     if (theme == "dark") {
       this.theme.bgColor = "#0a0a0a";
