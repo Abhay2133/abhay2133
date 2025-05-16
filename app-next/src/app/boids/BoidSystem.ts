@@ -105,8 +105,8 @@ export default class BoidSystem {
       boid.pos.x += dx;
       boid.pos.y -= dy;
 
-      boid.pos.x = cycle(-10, this.renderer.canvas.width, boid.pos.x);
-      boid.pos.y = cycle(-10, this.renderer.canvas.height, boid.pos.y);
+      boid.pos.x = cycle(-2 * boid.style.size!, this.renderer.canvas.width + 2 * boid.style.size!, boid.pos.x);
+      boid.pos.y = cycle(-2 * boid.style.size!, this.renderer.canvas.height + 2 * boid.style.size!, boid.pos.y);
     });
   }
 
