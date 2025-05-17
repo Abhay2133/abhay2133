@@ -22,3 +22,16 @@ export default function randomHexColor() {
 }
 
 const hexcodes = "0123456789abcdef";
+
+export function scrollTo(node?: Element | null, offset: number = 0): void {
+  if (!node) return;
+
+  const top = node.getBoundingClientRect().top + window.scrollY - offset;
+
+  window.scrollTo({
+    top,
+    behavior: "smooth",
+  });
+}
+
+export const $ = (q: string) => document.querySelector(q);

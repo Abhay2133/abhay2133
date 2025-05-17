@@ -16,7 +16,7 @@ export default function Home() {
     <main>
       <Navbar />
       {/* Header and Hero Section */}
-      <section className="p3d relative flex min-h-screen w-full flex-col">
+      <section id="hero" className="p3d relative flex min-h-screen w-full flex-col">
         <BoidsContainer />
         <div className="absolute flex min-h-screen w-full flex-col pt-[90px]" style={{ zIndex: 999 }}>
           <HeroSection className="z-10 flex-1" />
@@ -36,14 +36,14 @@ function Navbar({ className }: { className?: string }) {
     <header className={`no-scrollbar z-max fixed flex w-full items-center gap-3 overflow-auto bg-[#ffffffdd] p-4 px-8 text-xl dark:bg-[#000000aa] ${className} border-b dark:border-gray-700`}>
       <ThemeToggle />
       <nav className="no-scrollbar ml-auto flex gap-x-10 overflow-auto pl-10 pr-3">
-        {navLinks.map((item: { url: string; label: string; icon: JSX.Element }, index: number) => (
-          <a key={index} className="relative font-thin dark:text-gray-100" href={item.url}>
+        {navLinks.map((item: { label: string; icon: JSX.Element; onClick(): void }, index: number) => (
+          <div key={index} className=" cursor-pointer relative font-thin dark:text-gray-100" onClick={item.onClick}>
             <div className="flex items-center gap-3">
               {item.icon}
               <span>{item.label}</span>
             </div>
             {/* <div className="bottom-line"></div> */}
-          </a>
+          </div>
         ))}
       </nav>
     </header>

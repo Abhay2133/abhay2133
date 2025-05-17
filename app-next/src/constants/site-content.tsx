@@ -1,13 +1,49 @@
+import { $, scrollTo } from "@/lib/hlpr";
 import { ProjectData, SkillData } from "@/types/home";
 import { BugIcon, Code2, Download, FilesIcon, HeadsetIcon, HomeIcon, Rss } from "lucide-react";
 
 export const navLinks = [
-  { icon: <HomeIcon size={20} />, label: "Home", url: "#" },
-  { icon: <Code2 size={20} />, label: "Skills", url: "#skills" },
-  { icon: <FilesIcon size={20} />, label: "Projects", url: "#projects" },
-  { icon: <BugIcon size={20} />, label: "Experience", url: "#experience" },
-  { icon: <Rss size={20} />, label: "Blog", url: "/blog" },
-  { icon: <HeadsetIcon size={20} />, label: "Contact", url: "#contact" },
+  {
+    icon: <HomeIcon size={20} />,
+    label: "Home",
+    url: "#",
+    onClick() {
+      scrollTo($("#hero"));
+    },
+  },
+  {
+    icon: <Code2 size={20} />,
+    label: "Skills",
+    onClick() {
+      scrollTo($("#skills"), 100);
+    },
+  },
+  {
+    icon: <FilesIcon size={20} />,
+    label: "Projects",
+    onClick() {
+      scrollTo($("#projects"), 100);
+    },
+  },
+  {
+    icon: <BugIcon size={20} />,
+    label: "Experience",
+    onClick() {},
+  },
+  {
+    icon: <Rss size={20} />,
+    label: "Blog",
+    onClick() {
+      window.open("/blog");
+    },
+  },
+  {
+    icon: <HeadsetIcon size={20} />,
+    label: "Contact",
+    onClick() {
+      scrollTo($("#contact"));
+    },
+  },
 ];
 
 export const hero_section = {
