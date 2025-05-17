@@ -206,7 +206,7 @@ function Contact() {
 
 function Section({ children, heading, className, subheading = "" }: PropsWithChildren & { heading: string; subheading?: string; className?: string }) {
   return (
-    <section id="projects" className={"min-h-screen px-4 pb-20 pt-5 md:px-10 " + className || ""}>
+    <section id="projects" className={"md:min-h-screen px-4 pb-20 pt-5 md:px-10 " + className || ""}>
       <h2 className="mb-3 text-center text-4xl">{heading}</h2>
       <h3 className="text-center text-xl text-gray-800 dark:text-gray-500">{subheading}</h3>
       {children}
