@@ -90,8 +90,8 @@ function HeroSection({ className }: { className?: string }) {
 
 function Skills() {
   return (
-    <Section heading={"Skills"} subheading="The Technologies That Power My Projects" className="lg:min-h-screen min-h-fit">
-      <div className="mt-10 flex flex-wrap gap-2 md:justify-center lg:gap-5">
+    <Section id="skills" heading={"Skills"} subheading="The Technologies That Power My Projects">
+      <div className="mt-10 flex flex-wrap justify-center gap-2 lg:gap-5">
         {skills.map((item: SkillData, index: number) => (
           <SkillCard key={index} {...item} />
         ))}
@@ -102,18 +102,21 @@ function Skills() {
 
 function SkillCard({ name, projects, time, icon }: SkillData) {
   return (
-    <div className="flex min-w-20 gap-x-2 rounded border-2 border-transparent bg-white p-1 shadow transition-all duration-200 hover:bg-gray-100 md:gap-x-5 md:rounded-xl md:p-2 lg:w-72 dark:border-transparent dark:bg-gray-800 dark:hover:bg-gray-900 dark:hover:shadow-gray-800">
-      {/* logo */}
-      <div className="hidden h-[90px] w-[90px] items-center justify-center rounded-lg bg-[#00000011] lg:flex dark:bg-[#ffffff22]">
-        <Image alt={`${name}-logo`} src={icon.dark} height={60} width={60} className="hidden transition-transform hover:scale-90 dark:block" />
-        <Image alt={`${name}-logo`} src={icon.light} height={60} width={60} className="transition-transform hover:scale-90 dark:hidden" />
+    <div className="skill-card flex min-w-20 gap-x-2 overflow-hidden rounded bg-white p-1 shadow transition-all duration-200 hover:bg-gray-100 dark:border-transparent dark:bg-gray-900 md:gap-x-5 md:rounded-xl md:p-2 lg:w-72">
+      {/* LOGO - for larger screen */}
+      <div className="relative hidden h-[90px] w-[90px] items-center justify-center rounded-lg md:flex">
+        <div className="skill-card-img-bg absolute z-10 h-full w-full rounded bg-gray-100 dark:bg-gray-800" />
+        <Image alt={`${name}-logo`} src={icon.dark} height={60} width={60} className="absolute z-30 hidden transition-transform hover:scale-90 dark:block" />
+        <Image alt={`${name}-logo`} src={icon.light} height={60} width={60} className="absolute z-30 transition-transform hover:scale-90 dark:hidden" />
       </div>
-      <div className="flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-[#00000011] lg:hidden dark:bg-[#ffffff22]">
-        <Image alt={`${name}-logo`} src={icon.dark} height={23} width={23} className="hidden transition-transform hover:scale-90 dark:block" />
-        <Image alt={`${name}-logo`} src={icon.light} height={23} width={23} className="transition-transform hover:scale-90 dark:hidden" />
+      {/* LOGO - for mobile screen */}
+      <div className="relative flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-[#00000011] dark:bg-[#ffffff22] md:hidden">
+        <div className="skill-card-img-bg absolute z-10 h-full w-full rounded bg-gray-100 dark:bg-gray-800" />
+        <Image alt={`${name}-logo`} src={icon.dark} height={23} width={23} className="z-30 hidden transition-transform hover:scale-90 dark:block" />
+        <Image alt={`${name}-logo`} src={icon.light} height={23} width={23} className="z-30 transition-transform hover:scale-90 dark:hidden" />
       </div>
       {/* body */}
-      <div className="flex flex-col justify-center">
+      <div className="z-50 flex flex-col justify-center">
         <div className="md:text-xl">{name}</div>
         <div className="mb-1 mt-auto hidden items-center whitespace-nowrap text-base md:flex">
           <Image className="hidden h-[20px] w-[20px] dark:block" src="/icons/code_dark.png" height={20} width={20} alt="Projects Icon" />
@@ -136,7 +139,7 @@ function SkillCard({ name, projects, time, icon }: SkillData) {
 
 function Projects() {
   return (
-    <Section heading="Projects" subheading="Creative Solutions and Achievements">
+    <Section id="projects" heading="Projects" subheading="Creative Solutions and Achievements">
       <div className="mt-5 grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:px-32">
         {projects.map((project: ProjectData, i: number) => (
           <ProjectCard key={i} {...project} />
@@ -204,9 +207,9 @@ function Contact() {
   );
 }
 
-function Section({ children, heading, className, subheading = "" }: PropsWithChildren & { heading: string; subheading?: string; className?: string }) {
+function Section({ children, heading, className, subheading = "", id }: PropsWithChildren & { heading: string; subheading?: string; className?: string; id?: string }) {
   return (
-    <section id="projects" className={"md:min-h-screen px-4 pb-20 pt-5 md:px-10 " + className || ""}>
+    <section id={id} className={"px-4 pb-8 pt-5 md:min-h-screen md:px-10 md:pb-20 " + className || ""}>
       <h2 className="mb-3 text-center text-4xl">{heading}</h2>
       <h3 className="text-center text-xl text-gray-800 dark:text-gray-500">{subheading}</h3>
       {children}

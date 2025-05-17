@@ -80,20 +80,29 @@ body * {
   background-position: center;
 }
 
-.project:hover > .project-img ,
+.project:hover > .project-img,
 .project:focus > .project-img {
-  height: 0 ;
+  height: 0;
 }
 
-.project:hover .project-description{
+.project:hover .project-description {
   display: block;
 }
 
-.project-footer{
+.project-footer {
   transform: translateY(200px);
 }
 
 .project:hover .project-footer,
-.project:focus .project-footer{
+.project:focus .project-footer {
   transform: none;
+}
+
+.skill-card-img-bg {
+  transition: 900ms linear !important;
+  transform: scale(1) !important;
+}
+
+.skill-card:hover .skill-card-img-bg {
+  transform: scale(7) !important;
 }

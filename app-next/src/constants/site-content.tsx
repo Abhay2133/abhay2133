@@ -33,6 +33,24 @@ export const skills: SkillData[] = [
     time: "9+ months",
   },
   {
+    icon: { dark: "/icons/ruby.png", light: "/icons/ruby.png" },
+    name: "Ruby",
+    projects: 10,
+    time: "9+ months",
+  },
+  {
+    icon: { dark: "/icons/rails.png", light: "/icons/rails.png" },
+    name: "Rails",
+    projects: 10,
+    time: "9+ months",
+  },
+  {
+    icon: { dark: "/icons/vue.png", light: "/icons/vue.png" },
+    name: "VueJS",
+    projects: 10,
+    time: "9+ months",
+  },
+  {
     icon: { dark: "/icons/nextjs.png", light: "/icons/nextjs.png" },
     name: "NextJS",
     projects: 4,
@@ -96,6 +114,7 @@ export const skills: SkillData[] = [
     time: "3+ months",
   },
 ];
+
 export const projects: ProjectData[] = [
   {
     name: "Blog",
@@ -104,7 +123,7 @@ export const projects: ProjectData[] = [
     description: "A simple blogging platform to publish and manage articles.",
     link: "/blog",
     github: "",
-    image: "/images/blog.jpg"
+    image: "/images/blog.jpg",
   },
   {
     name: "OpenChat",
@@ -112,7 +131,7 @@ export const projects: ProjectData[] = [
     icon: { light: "", dark: "" },
     description: "A real-time chat application for one-on-one conversations.",
     github: "https://github.com/Abhay2132/openchat",
-    image:"/images/openchat.jpg"
+    image: "/images/openchat.jpg",
   },
   {
     name: "CampusCue",
@@ -120,7 +139,7 @@ export const projects: ProjectData[] = [
     icon: { light: "", dark: "" },
     description: "A campus-wide communication and notification platform.",
     github: "https://github.com/Abhay2133/campuscue",
-    image:"/images/campuscue.jpg"
+    image: "/images/campuscue.jpg",
   },
   {
     name: "HotQuiz",
@@ -128,7 +147,7 @@ export const projects: ProjectData[] = [
     icon: { light: "", dark: "" },
     description: "An engaging quiz app with hot seat style competition.",
     github: "https://github.com/Abhay2132/quiz_app",
-    image:"/images/hotquiz.jpg"
+    image: "/images/hotquiz.jpg",
   },
   {
     name: "Quiz Bowl",
@@ -136,6 +155,6 @@ export const projects: ProjectData[] = [
     icon: { light: "", dark: "" },
     description: "A team-based quiz competition system for college events.",
     github: "https://github.com/Abhay2133/quiz_bowl",
-    image:"/images/quizbowl.jpg"
+    image: "/images/quizbowl.jpg",
   },
 ];
