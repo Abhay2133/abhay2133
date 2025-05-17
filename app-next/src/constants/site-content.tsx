@@ -102,29 +102,40 @@ export const projects: ProjectData[] = [
     version: "0.0.1",
     icon: { light: "", dark: "" },
     description: "A simple blogging platform to publish and manage articles.",
+    link: "/blog",
+    github: "",
+    image: "/images/blog.jpg"
   },
   {
     name: "OpenChat",
     version: "1.0.5",
     icon: { light: "", dark: "" },
     description: "A real-time chat application for one-on-one conversations.",
+    github: "https://github.com/Abhay2132/openchat",
+    image:"/images/openchat.jpg"
   },
   {
     name: "CampusCue",
     version: "0.2.4",
     icon: { light: "", dark: "" },
     description: "A campus-wide communication and notification platform.",
+    github: "https://github.com/Abhay2133/campuscue",
+    image:"/images/campuscue.jpg"
   },
   {
     name: "HotQuiz",
     version: "0.2.4",
     icon: { light: "", dark: "" },
     description: "An engaging quiz app with hot seat style competition.",
+    github: "https://github.com/Abhay2132/quiz_app",
+    image:"/images/hotquiz.jpg"
   },
   {
     name: "Quiz Bowl",
     version: "0.2.4",
     icon: { light: "", dark: "" },
     description: "A team-based quiz competition system for college events.",
+    github: "https://github.com/Abhay2133/quiz_bowl",
+    image:"/images/quizbowl.jpg"
   },
 ];

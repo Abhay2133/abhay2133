@@ -10,4 +10,7 @@ export interface ProjectData{
   version:string;
   icon:{dark:string, light:string};
   description: string,
+  link?:string,
+  image?:string,
+  github: string,
 }
