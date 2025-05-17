@@ -25,6 +25,9 @@ export default class BoidSystem {
     }
     this.boids = Array.from({ length: boidsCount }).map(() => this.createBoid());
 
+    // moving boid to out of the screen initially
+    this.boids.forEach((boid) => this.translateBoidBy(boid, Math.max(canvas.width, canvas.height), true));
+
     window.addEventListener("resize", () => this.resizeCanvas());
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     mediaQuery.addEventListener("change", (e) => {
@@ -87,27 +90,31 @@ export default class BoidSystem {
     this.alignment();
     this.cohesion();
 
-    this.translateBoid();
+    this.moveBoids();
   }
 
   private seperation() {}
   private alignment() {}
   private cohesion() {}
 
-  private translateBoid() {
+  private moveBoids() {
     this.boids.forEach((boid) => {
-      const { degree = 0 } = boid.style;
-
       const ds = boid.speed * this.tick * 0.001;
-      const dx = Math.cos(degree * (Math.PI / 180)) * ds;
-      const dy = Math.sin(degree * (Math.PI / 180)) * ds;
-
-      boid.pos.x += dx;
-      boid.pos.y -= dy;
-
-      boid.pos.x = cycle(-2 * boid.style.size!, this.renderer.canvas.width + 2 * boid.style.size!, boid.pos.x);
-      boid.pos.y = cycle(-2 * boid.style.size!, this.renderer.canvas.height + 2 * boid.style.size!, boid.pos.y);
+      this.translateBoidBy(boid, ds);
     });
+  }
+
+  private translateBoidBy(boid: Boid, ds: number, noCycle = false) {
+    const { degree = 0 } = boid.style;
+    const dx = Math.cos(degree * (Math.PI / 180)) * ds;
+    const dy = Math.sin(degree * (Math.PI / 180)) * ds;
+
+    boid.pos.x += dx;
+    boid.pos.y -= dy;
+
+    if (noCycle) return;
+    boid.pos.x = cycle(-2 * boid.style.size!, this.renderer.canvas.width + 2 * boid.style.size!, boid.pos.x);
+    boid.pos.y = cycle(-2 * boid.style.size!, this.renderer.canvas.height + 2 * boid.style.size!, boid.pos.y);
   }
 
   private renderFrame() {
