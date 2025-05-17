@@ -5,20 +5,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --grid-color: #50a4ff;
-  --radial-color-inner: #ffffff11;
-  --radial-color-outer: #fff;
+
+  --text-primary-color: #000;
+  --text-secondary-color: #888;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    /* --grid-color: #3a3a3a; */
-    --grid-color: rgb(0, 92, 20);
-    --radial-color-inner: #00000011;
-    --radial-color-outer: #000;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  --text-primary-color: #fff;
+  --text-secondary-color: #444;
+}
+
+.text-primary {
+  color: var(--text-primary-color);
+}
+
+.text-secondary {
+  color: var(--text-secondary-color);
 }
 
 body {
@@ -41,77 +46,17 @@ body * {
   }
 }
 
-nav a:hover div {
-  transform: scale(1);
-}
-
-.grid-bg {
-  --grid-line: var(--grid-color, #223);
-  --gap: 20px;
-  --line-width: 2px;
-  --angle: 90deg;
-  height: 100%;
-  margin: 0;
-  background-color: var(--background);
-  background: 
-    /* repeating-linear-gradient(calc(-1 * var(--angle)), var(--grid-line) 0 1px, transparent var(--line-width) var(--gap)), */ repeating-linear-gradient(
-      var(--grid-line) 0 1px,
-      transparent var(--line-width) var(--gap)
-    ),
-    repeating-linear-gradient(
-      var(--angle),
-      var(--grid-line) 0 1px,
-      transparent var(--line-width) var(--gap)
-    );
-  /* animation: grid-bg-dark 1000ms linear infinite; */
+.bottom-line {
+  background-color: var(--text-primary-color);
+  height: 2px;
+  width: 100%;
+  transform: scale(0);
   transition: 500ms;
-  /* background-color: red; */
-  animation: slide-left 5s linear infinite;
-  --x-angle: 70deg;
-  --y-translate : 0px;
-  width: 4000px;
+  border-radius: 4px;
 }
 
-.p3d{
-  perspective: 400px;
-  overflow: hidden;
-}
-
-@keyframes slide-left {
-  from{
-    transform: translateX(-1260px) translateY(var(--y-translate)) rotateX(var(--x-angle));
-  }
-  to{
-    transform: translateX(-1200px) translateY(var(--y-translate)) rotateX(var(--x-angle));
-  }
-}
-
-.radial {
-  /* background: radial-gradient(
-    var(--radial-color-inner),
-    var(--radial-color-outer)
-  ); */
-}
-
-@keyframes grid-bg-dark {
-  0% {
-    --grid-line: var(--grid-color, #223);
-  }
-  20% {
-    --grid-line: #333;
-  }
-  40% {
-    --grid-line: #222;
-  }
-  60% {
-    --grid-line: #111;
-  }
-  80% {
-    --grid-line: #222;
-  }
-  100% {
-    --grid-line: var(--grid-color, #223);
-  }
+*:has(> .bottom-line):hover .bottom-line {
+  transform: scale(1);
 }
 
 /* Hide scrollbar but allow scrolling */
@@ -124,40 +69,6 @@ nav a:hover div {
   display: none; /* Chrome, Safari, and Opera */
 }
 
-
-/* GRID CANVAS -- CSS */
-
-#grid-container{
-  /* background-color: red; */
-  position: absolute;
-  perspective: 400px;
-  overflow: hidden;
-  min-height: 100vh;
-  position: relative;
-}
-
-#gridCanvas {
-  --angle-z: 40deg;
-  --scale: 9;
-  margin: 0 auto;
-  transform: rotateX(var(--angle-z)) scale(var(--scale));
-  animation: slide 5s linear infinite;
-  transition: 500ms;
-  position: absolute;
-  /* flex:1; */
-  width: 2000px;
-}
-
-#gridCanvas:hover {
-  /* transform: rotateX(20deg); */
-}
-
-@keyframes slide {
-  0% {
-    transform:  rotateX(var(--angle-z)) scale(var(--scale)) translateX(-40px) translateY(-40px);
-  }
-
-  100% {
-    transform:  rotateX(var(--angle-z)) scale(var(--scale)) translateX(40px) translateY(40px);
-  }
+.z-max {
+  z-index: 99999999999;
 }

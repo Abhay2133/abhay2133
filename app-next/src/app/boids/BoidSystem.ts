@@ -19,21 +19,20 @@ export default class BoidSystem {
     this.renderer = new Renderer(canvas);
     this.resizeCanvas();
     this.pointer = { x: 0, y: 0 };
-    if (theme == "dark") {
-      this.theme.bgColor = "#0a0a0a";
-      this.theme.boidColor = "#333";
-    }
     this.boids = Array.from({ length: boidsCount }).map(() => this.createBoid());
 
     // moving boid to out of the screen initially
     this.boids.forEach((boid) => this.translateBoidBy(boid, Math.max(canvas.width, canvas.height), true));
 
     window.addEventListener("resize", () => this.resizeCanvas());
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", (e) => {
-      console.log(e.matches);
-      this.theme.bgColor = e.matches ? "#0a0a0a" : "#ffffff";
-    });
+  }
+
+  setTheme(theme: "light" | "dark") {
+    if (theme == "dark") {
+      this.theme.bgColor = "#0a0a0a";
+    } else {
+      this.theme.bgColor = "white";
+    }
   }
 
   resizeCanvas(width?: number, height?: number) {

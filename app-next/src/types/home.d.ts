@@ -8,6 +8,6 @@ export interface SkillData {
 export interface ProjectData{
   name:string;
   version:string;
-  skills:string[];
   icon:{dark:string, light:string};
+  description: string,
 }

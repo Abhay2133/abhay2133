@@ -1,22 +1,28 @@
 import { ProjectData, SkillData } from "@/types/home";
+import { BugIcon, Code2, Download, FilesIcon, HeadsetIcon, HomeIcon, Rss } from "lucide-react";
 
 export const navLinks = [
-  { label: "Home", url: "#" },
-  { label: "Skills", url: "#skills" },
-  { label: "Projects", url: "#projects" },
-  { label: "Experience", url: "#experience" },
-  { label: "Blog", url: "/blog" },
-  { label: "Contact", url: "#contact" },
+  { icon: <HomeIcon size={20} />, label: "Home", url: "#" },
+  { icon: <Code2 size={20} />, label: "Skills", url: "#skills" },
+  { icon: <FilesIcon size={20} />, label: "Projects", url: "#projects" },
+  { icon: <BugIcon size={20} />, label: "Experience", url: "#experience" },
+  { icon: <Rss size={20} />, label: "Blog", url: "/blog" },
+  { icon: <HeadsetIcon size={20} />, label: "Contact", url: "#contact" },
 ];
 
 export const hero_section = {
   heading: ["Hi, I'm Abhay Bisht", "a Full Stack Developer"],
-  subheading: [
-    "Experienced in React, Node.js, and PostgreSQL",
-    "creating impactful digital experiences",
-  ],
+  subheading: ["Experienced in React, Node.js, and PostgreSQL", "creating impactful digital experiences"],
   CTA: { label: "View My Work", href: "#projects", target: "_self" },
-  subCTA: { label: "Download Resume", href: "/resumes/Resume_Abhay-Bisht.pdf", target: "_blank" },
+  subCTA: {
+    label: (
+      <>
+        <Download size={20} /> Resume
+      </>
+    ),
+    href: "/resumes/Resume_Abhay-Bisht.pdf",
+    target: "_blank",
+  },
 };
 
 export const skills: SkillData[] = [
@@ -90,38 +96,35 @@ export const skills: SkillData[] = [
     time: "3+ months",
   },
 ];
-
 export const projects: ProjectData[] = [
   {
     name: "Blog",
     version: "0.0.1",
-    skills: ["react", "nextjs", "monogdb"],
     icon: { light: "", dark: "" },
+    description: "A simple blogging platform to publish and manage articles.",
   },
-  // {name:"YouTube Downloader", version:"0.1.2", skills:["react", "nodejs", "ytdl"], icon:{light:"", dark:""}},
   {
     name: "OpenChat",
     version: "1.0.5",
-    skills: ["react", "express", "mongodb", "websocket"],
     icon: { light: "", dark: "" },
+    description: "A real-time chat application for one-on-one conversations.",
   },
   {
     name: "CampusCue",
     version: "0.2.4",
-    skills: ["react", "nextjs", "monogdb"],
     icon: { light: "", dark: "" },
+    description: "A campus-wide communication and notification platform.",
   },
   {
     name: "HotQuiz",
     version: "0.2.4",
-    skills: ["python3", "custom-tkinter", "socket"],
     icon: { light: "", dark: "" },
+    description: "An engaging quiz app with hot seat style competition.",
   },
-  // {name:"Mute Mate", version:"0.2.4", skills:["flutter", "firebase", "android"], icon:{light:"", dark:""}},
   {
     name: "Quiz Bowl",
     version: "0.2.4",
-    skills: ["nextjs", "postgres", "react"],
     icon: { light: "", dark: "" },
+    description: "A team-based quiz competition system for college events.",
   },
 ];
