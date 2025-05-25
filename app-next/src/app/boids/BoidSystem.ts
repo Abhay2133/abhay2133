@@ -31,7 +31,7 @@ export default class BoidSystem {
     if (theme == "dark") {
       this.theme.bgColor = "#0a0a0a";
     } else {
-      this.theme.bgColor = "white";
+      this.theme.bgColor = "#fff";
     }
   }
 

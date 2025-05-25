@@ -8,6 +8,13 @@
 
   --text-primary-color: #000;
   --text-secondary-color: #888;
+
+  --cursor: url("/icons/cursor-light.svg"), auto;
+}
+
+.nav-item:hover,
+a:hover {
+  --cursor: url("/icons/cursor-hover.svg"), auto;
 }
 
 .dark {
@@ -16,6 +23,8 @@
 
   --text-primary-color: #fff;
   --text-secondary-color: #444;
+
+  --cursor: url("/icons/cursor-dark.svg"), auto;
 }
 
 .text-primary {
@@ -34,6 +43,7 @@ body {
 
 * {
   scroll-behavior: smooth;
+  cursor: var(--cursor);
 }
 
 body * {
@@ -105,4 +115,70 @@ body * {
 
 .skill-card:hover .skill-card-img-bg {
   transform: scale(7) !important;
+}
+
+.floating {
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 40px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer * {
+  cursor: pointer;
+}
+
+.navbar-wrapper {
+  max-width: calc(100% - 2rem) !important;
+}
+
+.nav-bottom-line {
+  transition: 400ms;
+}
+
+.hmbgr div {
+  transition: 200ms;
+  transform-origin: 50% 50%;
+}
+
+.hmbgr[data-active="true"] > div:first-child {
+  transform: translateY(8px) rotate(45deg) scale(0.9);
+}
+
+.hmbgr[data-active="true"] > div:nth-child(2) {
+  opacity: 0;
+}
+
+.hmbgr[data-active="true"] > div:last-child {
+  transform: translateY(-8px) rotate(-45deg) scale(0.9);
+}
+
+.sidepanel-bg {
+  animation: fadein 400ms linear 0ms 1;
+}
+
+.sidepanel-body {
+  animation: slidein 300ms ease-out 0ms 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(-200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

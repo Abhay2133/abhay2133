@@ -4,7 +4,7 @@ import { BugIcon, Code2, Download, FilesIcon, HeadsetIcon, HomeIcon, Rss } from 
 
 export const navLinks = [
   {
-    icon: <HomeIcon size={20} />,
+    icon: <HomeIcon size={16} />,
     label: "Home",
     url: "#",
     onClick() {
@@ -12,33 +12,33 @@ export const navLinks = [
     },
   },
   {
-    icon: <Code2 size={20} />,
+    icon: <Code2 size={16} />,
     label: "Skills",
     onClick() {
       scrollTo($("#skills"), 100);
     },
   },
   {
-    icon: <FilesIcon size={20} />,
+    icon: <FilesIcon size={16} />,
     label: "Projects",
     onClick() {
       scrollTo($("#projects"), 100);
     },
   },
   {
-    icon: <BugIcon size={20} />,
+    icon: <BugIcon size={16} />,
     label: "Experience",
     onClick() {},
   },
   {
-    icon: <Rss size={20} />,
+    icon: <Rss size={16} />,
     label: "Blog",
     onClick() {
       window.open("/blog");
     },
   },
   {
-    icon: <HeadsetIcon size={20} />,
+    icon: <HeadsetIcon size={16} />,
     label: "Contact",
     onClick() {
       scrollTo($("#contact"));

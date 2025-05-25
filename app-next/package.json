@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
@@ -42,6 +42,6 @@
       "prettier-plugin-tailwindcss"
     ],
     "tabWidth": 2,
-    "printWidth": 200
+    "printWidth": 140
   }
 }

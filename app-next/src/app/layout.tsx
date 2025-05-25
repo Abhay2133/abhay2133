@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
+import Cursor from "@/components/cursor";
 
 const montserrat = localFont({
   src: "./fonts/Montserrat-Regular.ttf",
@@ -21,8 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
-        <body className={`${montserrat.variable} antialiased`}> <ThemeProvider>{children}</ThemeProvider></body>
-      </html>
+    <html lang="en">
+      <body className={`${montserrat.variable} antialiased`}>
+        {" "}
+        <ThemeProvider>
+          {children}
+          {/* <Cursor /> */}
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

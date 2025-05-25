@@ -3,50 +3,130 @@
 import { hero_section, navLinks, projects, skills } from "@/constants/site-content";
 import { ProjectData, SkillData } from "@/types/home";
 import Image from "next/image";
-import { PropsWithChildren, ReactNode, useState } from "react";
+import { createContext, PropsWithChildren, ReactNode, SetStateAction, useContext, useState, Dispatch, useRef, useEffect } from "react";
 import BoidsContainer from "./boids/page";
 import { useTheme } from "next-themes";
 import ThemeToggle from "@/components/themeToggle";
 import Button from "@/components/button";
 
+const NavContext = createContext<{ active: number; setActive: (val: number) => void }>({ active: 0, setActive: (val: number) => {} });
+const useNav = () => useContext(NavContext);
+
 export default function Home() {
   // const { theme, setTheme } = useTheme()
 
   return (
-    <main>
-      <Navbar />
-      {/* Header and Hero Section */}
-      <section id="hero" className="p3d relative flex min-h-screen w-full flex-col">
-        <BoidsContainer />
-        <div className="absolute flex min-h-screen w-full flex-col pt-[90px]" style={{ zIndex: 999 }}>
-          <HeroSection className="z-10 flex-1" />
-        </div>
-      </section>
+    <NavProvider>
+      <main>
+        <Navbar />
+        {/* Header and Hero Section */}
+        <section id="hero" className="p3d relative flex min-h-screen w-full flex-col">
+          <BoidsContainer />
+          <div className="absolute flex min-h-screen w-full flex-col pt-[90px]" style={{ zIndex: 999 }}>
+            <HeroSection className="z-10 flex-1" />
+          </div>
+        </section>
 
-      <Skills />
-      <Projects />
-      <Contact />
-    </main>
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+    </NavProvider>
+  );
+}
+
+function NavProvider({ children }: PropsWithChildren) {
+  const [active, setActive] = useState(0);
+  return (
+    <NavContext.Provider
+      value={{
+        active,
+        setActive(val) {
+          setActive(val);
+        },
+      }}
+    >
+      {children}
+    </NavContext.Provider>
   );
 }
 
 function Navbar({ className }: { className?: string }) {
-  const [isOpen, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { active, setActive } = useNav();
+  const itemsData = useRef<{ width: number; offsetLeft: number }[]>([]);
+  const itemsRef = useRef<HTMLElement>(null);
+  const bottomLineRef = useRef<HTMLDivElement>(null);
+
+  const calcData = () =>
+    Array.from(itemsRef.current?.children || []).forEach((item: Partial<HTMLElement>) => {
+      itemsData.current.push({ offsetLeft: item.offsetLeft || 0, width: item.getBoundingClientRect?.().width || 0 });
+    });
+
+  useEffect(() => {
+    window.addEventListener("resize", calcData);
+    calcData();
+    () => window.removeEventListener("resize", calcData);
+  }, []);
+
+  useEffect(() => {
+    bottomLineRef.current?.style.setProperty("width", itemsData.current.at(active)?.width + "px");
+    bottomLineRef.current?.style.setProperty("left", itemsData.current.at(active)?.offsetLeft + "px");
+  }, [active]);
+
   return (
-    <header className={`no-scrollbar z-max fixed flex w-full items-center gap-3 overflow-auto bg-[#ffffffdd] p-4 px-8 text-xl dark:bg-[#000000aa] ${className} border-b dark:border-gray-700`}>
-      <ThemeToggle />
-      <nav className="no-scrollbar ml-auto flex gap-x-10 overflow-auto pl-10 pr-3">
-        {navLinks.map((item: { label: string; icon: JSX.Element; onClick(): void }, index: number) => (
-          <div key={index} className=" cursor-pointer relative font-thin dark:text-gray-100" onClick={item.onClick}>
-            <div className="flex items-center gap-3">
-              {item.icon}
-              <span>{item.label}</span>
+    <>
+      <header
+        className={`navbar-wrapper no-scrollbar floating z-max fixed top-1 flex w-full items-center gap-3 overflow-auto bg-white p-2 px-8 text-xl shadow dark:bg-black md:top-4 md:w-min ${className} border-b dark:border-gray-700`}
+      >
+        <ThemeToggle />
+        <nav
+          ref={itemsRef}
+          className="no-scrollbar relative ml-auto hidden h-[30px] items-center gap-x-10 overflow-auto pl-10 pr-3 md:flex"
+        >
+          {navLinks.map((item: { label: string; icon: JSX.Element; onClick(): void }, index: number) => (
+            <div
+              key={index}
+              className={`nav-item relative cursor-pointer font-thin dark:text-gray-100`}
+              onClick={() => [setActive(index), item.onClick()]}
+            >
+              <div className="flex items-center gap-3">
+                {item.icon}
+                <span className="text-base">{item.label}</span>
+              </div>
             </div>
-            {/* <div className="bottom-line"></div> */}
-          </div>
-        ))}
-      </nav>
-    </header>
+          ))}
+          <div ref={bottomLineRef} className="nav-bottom-line absolute bottom-0 left-12 w-20 border-b-2 border-b-blue-500"></div>
+        </nav>
+        <div className="flex-1 md:hidden" />
+        <div className="flex md:hidden" onClick={() => setOpen(!open)}>
+          <Hmbgr />
+        </div>
+      </header>
+      {open && (
+        <div className="sidepanel z-max fixed h-svh w-full">
+          <div className="sidepanel-bg absolute z-10 h-full w-full bg-[#00000088]" onClick={() => setOpen(false)} />
+          <ul className="sidepanel-body absolute z-20 flex h-full w-[70%] flex-col gap-4 bg-gray-100 p-5 pt-10 dark:bg-black">
+            {navLinks.map((item: { label: string; icon: JSX.Element; onClick(): void }, index: number) => (
+              <li key={index} onClick={() => setTimeout(() => [item.onClick(), setOpen(false)], 10)} className="flex gap-3 items-center">
+                {item.icon}
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Hmbgr({ active = false }: { active?: boolean }) {
+  return (
+    <div className="hmbgr flex flex-col items-center justify-center gap-[6px]" data-active={active}>
+      <div className="h-[2px] w-[22px] rounded bg-black dark:bg-white"></div>
+      <div className="h-[2px] w-[22px] rounded bg-black dark:bg-white"></div>
+      <div className="h-[2px] w-[22px] rounded bg-black dark:bg-white"></div>
+    </div>
   );
 }
 
@@ -106,14 +186,38 @@ function SkillCard({ name, projects, time, icon }: SkillData) {
       {/* LOGO - for larger screen */}
       <div className="relative hidden h-[90px] w-[90px] items-center justify-center rounded-lg md:flex">
         <div className="skill-card-img-bg absolute z-10 h-full w-full rounded bg-gray-100 dark:bg-gray-800" />
-        <Image alt={`${name}-logo`} src={icon.dark} height={60} width={60} className="absolute z-30 hidden transition-transform hover:scale-90 dark:block" />
-        <Image alt={`${name}-logo`} src={icon.light} height={60} width={60} className="absolute z-30 transition-transform hover:scale-90 dark:hidden" />
+        <Image
+          alt={`${name}-logo`}
+          src={icon.dark}
+          height={60}
+          width={60}
+          className="absolute z-30 hidden transition-transform hover:scale-90 dark:block"
+        />
+        <Image
+          alt={`${name}-logo`}
+          src={icon.light}
+          height={60}
+          width={60}
+          className="absolute z-30 transition-transform hover:scale-90 dark:hidden"
+        />
       </div>
       {/* LOGO - for mobile screen */}
       <div className="relative flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-[#00000011] dark:bg-[#ffffff22] md:hidden">
         <div className="skill-card-img-bg absolute z-10 h-full w-full rounded bg-gray-100 dark:bg-gray-800" />
-        <Image alt={`${name}-logo`} src={icon.dark} height={23} width={23} className="z-30 hidden transition-transform hover:scale-90 dark:block" />
-        <Image alt={`${name}-logo`} src={icon.light} height={23} width={23} className="z-30 transition-transform hover:scale-90 dark:hidden" />
+        <Image
+          alt={`${name}-logo`}
+          src={icon.dark}
+          height={23}
+          width={23}
+          className="z-30 hidden transition-transform hover:scale-90 dark:block"
+        />
+        <Image
+          alt={`${name}-logo`}
+          src={icon.light}
+          height={23}
+          width={23}
+          className="z-30 transition-transform hover:scale-90 dark:hidden"
+        />
       </div>
       {/* body */}
       <div className="z-50 flex flex-col justify-center">
@@ -155,7 +259,10 @@ function ProjectCard({ name, version, description, github, link, image }: Projec
       className={`project relative flex h-[310px] flex-col overflow-hidden rounded-lg border border-gray-200 bg-gray-50 shadow-md transition hover:shadow-lg dark:border-gray-800 dark:bg-gray-800 dark:hover:shadow-gray-700`}
     >
       {/* Image */}
-      <div style={image ? { backgroundImage: `url(${image})` } : {}} className="project-img h-[200px] w-full bg-gray-200 dark:bg-gray-500"></div>
+      <div
+        style={image ? { backgroundImage: `url(${image})` } : {}}
+        className="project-img h-[200px] w-full bg-gray-200 dark:bg-gray-500"
+      ></div>
 
       {/* Name and Description */}
       <div className="box-border h-[110px] p-3">
@@ -170,7 +277,11 @@ function ProjectCard({ name, version, description, github, link, image }: Projec
       {/* Footer */}
       <div className="project-footer absolute bottom-0 flex w-full justify-end gap-3 p-3 duration-500">
         {github && (
-          <a href={github} target="_blank" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-900">
+          <a
+            href={github}
+            target="_blank"
+            className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-900"
+          >
             <Image className="dark:invert" src={"/icons/github.svg"} height={20} width={20} alt="github-icon" />
           </a>
         )}
@@ -207,7 +318,13 @@ function Contact() {
   );
 }
 
-function Section({ children, heading, className, subheading = "", id }: PropsWithChildren & { heading: string; subheading?: string; className?: string; id?: string }) {
+function Section({
+  children,
+  heading,
+  className,
+  subheading = "",
+  id,
+}: PropsWithChildren & { heading: string; subheading?: string; className?: string; id?: string }) {
   return (
     <section id={id} className={"px-4 pb-8 pt-5 md:min-h-screen md:px-10 md:pb-20 " + className || ""}>
       <h2 className="mb-3 text-center text-4xl">{heading}</h2>
