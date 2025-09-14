@@ -1,8 +1,8 @@
 import randomHexColor, { cycle, randint } from "@/lib/hlpr";
 
 type Point = { x: number; y: number };
-type Style = { degree?: number; size?: number; fill?: string; stroke?: string; strokeWidth?: number };
-type Boid = { pos: Point; render(): void; speed: number; style: Style };
+type Style = { degree: number; size: number; fill: string; stroke?: string; strokeWidth: number };
+type Boid = { pos: Point; render(): void; speed: number; style: Style; rotationSpeed: number };
 type Theme = { bgColor: string; boidColor: string };
 
 export default class BoidSystem {
@@ -10,8 +10,8 @@ export default class BoidSystem {
   private isRunning = false;
   private pointer: { x: number; y: number };
   private boids: Array<Boid>;
-  private te = 0;
-  private tick = 0;
+  private timeElapsed = 0;
+  private deltaTime = 0;
 
   private theme: Theme = { bgColor: "white", boidColor: "lightblue" };
 
@@ -57,8 +57,9 @@ export default class BoidSystem {
     const canvas = renderer.canvas;
     return {
       pos: { x: randint(0, canvas.width), y: randint(0, canvas.height) },
-      style: { degree: randint(0, 360), size: 20, fill: randomHexColor(), strokeWidth: 0 } as Style,
+      style: { degree: randint(0, 360), size: 20, fill: randomHexColor(), strokeWidth: 0 },
       speed: randint(1, 40),
+      rotationSpeed: randint(-5, 5),
       render() {
         renderer.drawTriangle(this.pos, this.style);
       },
@@ -68,9 +69,9 @@ export default class BoidSystem {
   // Private Methods
 
   private setTick(te = 0) {
-    const tick = te - this.te;
-    this.te = te;
-    this.tick = tick;
+    const dt = te - this.timeElapsed;
+    this.timeElapsed = te;
+    this.deltaTime = dt;
   }
 
   private tickFrame(te = 0) {
@@ -98,7 +99,8 @@ export default class BoidSystem {
 
   private moveBoids() {
     this.boids.forEach((boid) => {
-      const ds = boid.speed * this.tick * 0.001;
+      const ds = boid.speed * this.deltaTime * 0.001;
+      boid.style.degree += boid.rotationSpeed * this.deltaTime * 0.001;
       this.translateBoidBy(boid, ds);
     });
   }

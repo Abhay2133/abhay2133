@@ -87,7 +87,7 @@ function Navbar({ className }: { className?: string }) {
           {navLinks.map((item: { label: string; icon: JSX.Element; onClick(): void }, index: number) => (
             <div
               key={index}
-              className={`nav-item relative cursor-pointer font-thin dark:text-gray-100`}
+              className={`nav-item relative font-thin dark:text-gray-100`}
               onClick={() => [setActive(index), item.onClick()]}
             >
               <div className="flex items-center gap-3">
