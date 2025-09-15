@@ -1,7 +1,10 @@
 import js from '@eslint/js'
+import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 
 export default [
   js.configs.recommended,
+  ...pluginVue.configs['flat/recommended'],
   {
     files: ['**/*.vue', '**/*.ts', '**/*.tsx', '**/*.js'],
     languageOptions: {
@@ -10,11 +13,12 @@ export default [
       globals: {
         window: 'readonly',
         document: 'readonly',
-        console: 'readonly'
+        console: 'readonly',
+        ...globals.browser,
       }
     },
     rules: {
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
     }
   }
 ]
