@@ -138,33 +138,49 @@ import { experiences } from '../data/experiences'
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-blue-600 dark:text-blue-400 font-bold">Vue</span>
+                    <img
+                      src="/logos/vue.svg"
+                      alt="Vue.js"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">Vue.js</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-cyan-100 dark:bg-cyan-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-cyan-600 dark:text-cyan-400 font-bold">React</span>
+                    <img
+                      src="/logos/react.svg"
+                      alt="React.js"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">React.js</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-yellow-600 dark:text-yellow-400 font-bold">JS</span>
+                    <img
+                      src="/logos/javascript.svg"
+                      alt="JavaScript"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">JavaScript</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-blue-600 dark:text-blue-400 font-bold">TS</span>
+                    <img
+                      src="/logos/typescript.svg"
+                      alt="TypeScript"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">TypeScript</span>
                 </div>
@@ -179,33 +195,54 @@ import { experiences } from '../data/experiences'
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-green-600 dark:text-green-400 font-bold">Node</span>
+                    <img
+                      src="/logos/nodejs.svg"
+                      alt="Node.js"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">Node.js</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-gray-600 dark:text-gray-300 font-bold">API</span>
+                    <img
+                      src="/logos/express-light.svg"
+                      alt="Express.js"
+                      class="w-full h-full object-contain block dark:hidden"
+                    >
+                    <img
+                      src="/logos/express-dark.svg"
+                      alt="Express.js"
+                      class="w-full h-full object-contain hidden dark:block"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">Express.js</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-green-600 dark:text-green-400 font-bold">DB</span>
+                    <img
+                      src="/logos/mongodb.svg"
+                      alt="MongoDB"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">MongoDB</span>
                 </div>
                 <div class="text-center">
                   <div
-                    class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2"
+                    class="w-16 h-16 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-2 p-2 shadow-md border border-gray-200 dark:border-gray-600"
                   >
-                    <span class="text-blue-600 dark:text-blue-400 font-bold">C++</span>
+                    <img
+                      src="/logos/cpp.svg"
+                      alt="C++"
+                      class="w-full h-full object-contain"
+                    >
                   </div>
                   <span class="text-sm text-gray-600 dark:text-gray-300">C++</span>
                 </div>

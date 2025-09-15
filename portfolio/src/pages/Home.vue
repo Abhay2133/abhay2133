@@ -49,9 +49,9 @@ const scrollToProjects = () => {
                 <div
                   class="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden"
                 >
-                  <!-- Placeholder for profile image -->
+                  <!-- Profile image -->
                   <img
-                    src="/placeholder-profile.jpg"
+                    src="/me.png"
                     alt="Abhay's Profile"
                     class="w-full h-full object-cover rounded-full"
                     @error="($event.target as HTMLImageElement).style.display = 'none'"

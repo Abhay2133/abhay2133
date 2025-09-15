@@ -43,9 +43,9 @@ const downloadResume = () => {
               <div
                 class="w-full h-full rounded-2xl bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden"
               >
-                <!-- Placeholder for profile image -->
+                <!-- Profile image -->
                 <img
-                  src="/placeholder-about.jpg"
+                  src="/me.png"
                   alt="Abhay's About Photo"
                   class="w-full h-full object-cover rounded-2xl"
                   @error="($event.target as HTMLImageElement).style.display = 'none'"
