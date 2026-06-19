@@ -3,7 +3,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=abhay2133&label=Profile%20views&color=0e75b6&style=flat" alt="abhay2133" /> </p>
 
-- 👨‍💻 All of my projects are available at [https://abhay21.vercel.app/](https://abhay21.vercel.app/)
+- 👨‍💻 All of my projects are available at [https://abhaybisht.com/](https://abhaybisht.com/)
 
 - 💬 Ask me about **react, next and prisma**
 
